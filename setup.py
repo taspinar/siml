@@ -8,7 +8,7 @@ setup(
 		author='Ahmet Taspinar',
 		author_email='taspinar@gmail.com',
 		license='MIT',
-		packages=['twitterscraper'],
+		packages=['siml'],
 		install_requires=[
           'numpy', 
 		  'math'

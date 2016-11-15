@@ -19,7 +19,7 @@ def determine_correct_guesses(X, Y, theta, m):
             correct+=1
     return correct
    
-def gradient_descent(X, Y, theta, alpha, m, number_of_iterations=1000):
+def logistic_regression(X, Y, theta, alpha, m, number_of_iterations=1000):
     for iter in range(0,number_of_iterations):
         cost = (-1.0/m)*sum([Y[ii]*math.log(hypothesis(theta, X[ii]))+(1-Y[ii])*math.log(1-hypothesis(theta, X[ii])) for ii in range(m)])
         grad = (-1.0/m)*sum([X[ii]*(Y[ii]-hypothesis(theta, X[ii])) for ii in range(m)])

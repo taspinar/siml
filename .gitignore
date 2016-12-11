@@ -2,3 +2,5 @@
 /dist/
 /*.egg-info
 /build/
+*.ipynb_checkpoints*
+/notebooks/img/perceptron_img_old/

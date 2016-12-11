@@ -7,6 +7,10 @@ This repository contains popular Machine Learning algorithms, which have been in
 Machine Learning is fun! But more importantly, Machine Learning is easy. 
 But the academic literature or even (wikipedia-pages) is full with unnecessary complicated terminology, notation and formulae. This gives people the idea that these ML algorithms can only be understood with a full understanding of advanced math and statistics. Stripped from all of these superfluous language we are left with simple maths which can be expressed in a few lines of code. 
 
+# Notebooks explaining the mathematics
+I have also provided some notebooks, explaining the mathematics of some Machine Learning algorithms. 
++ [Linear Regression and Logistic Regression](https://github.com/taspinar/siml/blob/master/notebooks/Linear%20Regression%2C%20Logistic%20Regression.ipynb)
+
 # Installation
 To install **siML**:
 ```python

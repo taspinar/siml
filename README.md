@@ -26,26 +26,4 @@ python setup.py install
 
 
 # Code Example
-Once it has been installed, the logistic regression algorithm can be used as follows:
-
-```python
-from siml import classifiers
-
-alpha = 0.5
-theta = np.ones(no_features)
-theta = classifiers.gradient_descent(X, Y, theta, alpha, no_training_examples)
-```
-
-'theta' is a vector which now contains the parameter values, calculated with the training set X,Y. 
-This vector can be used to classify new examples in the test-set X_test, Y_test (with the dot-product):
-
-```python
-determined_Y_test = [np.dot(theta, X_test[ii]) for ii in range(no_test_examples)]
-determined_Y_test_binary = [classifiers.to_binary(elem) for elem in determined_Y_test]
-```
-
-The determined Y values can be compared against the actual Y-values with the F1-score:
-```python
-f1 = evaluators.f1_score(determined_Y_test_binary, Y_test)
-print "\nf1-score on the test-set is %s" % (f1)
-```
+TODO

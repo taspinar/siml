@@ -11,6 +11,7 @@ But the academic literature or even (wikipedia-pages) is full with unnecessary c
 I have also provided some notebooks, explaining the mathematics of some Machine Learning algorithms. 
 + [Linear Regression and Logistic Regression](https://github.com/taspinar/siml/blob/master/notebooks/Linear%20Regression%2C%20Logistic%20Regression.ipynb)
 + [Naive Bayes Classification](https://github.com/taspinar/siml/blob/master/notebooks/Naive_Bayes.ipynb)
++ [Perceptron Classification](https://github.com/taspinar/siml/blob/master/notebooks/Perceptron.ipynb)
 
 # Installation
 To install **siML**:

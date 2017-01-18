@@ -3,67 +3,81 @@ import numpy as np
 import load_data as ld
 from evaluators import *
 
-class RegressionBaseClass():
+class LogisticRegression():
     """
     Class for performing logistic regression.
     """
-    def to_binary(self, x_i):
-        #this can probably also be done with round()
-        return 1 if x_i > 0.5 else 0
-
-    def sigmoid(self, z):
-        return 1 / (1 + math.exp(-z))
+    def __init__(self, min_error = 0.0001, learning_rate = 0.7, max_iter = 1000, C = 0.01):
+        self.min_error = min_error
+        self.learning_rate = learning_rate
+        self.max_iter = max_iter
+        self.theta = []
+        self.no_examples = 0
+        self.no_features = 0
+        self.X = None
+        self.Y = None
         
-    def hypothesis(self, x_i):
-        z = np.dot(self.theta, x_i)
-        return self.sigmoid(z)
+    def add_bias_col(self, X):
+        bias_col = np.ones((X.shape[0], 1))
+        return np.concatenate([bias_col, X], axis=1)
+              
+    def hypothesis(self, X):
+        return 1 / (1 + np.exp(-1.0 * np.dot(X, self.theta)))
 
-    def determine_correct_guesses(self, X, Y, m):
-        determined_Y = [np.dot(self.theta, X[ii]) for ii in range(m)]
-        determined_Y_binary = [self.to_binary(elem) for elem in determined_Y]
-        correct = 0
-        for ii in range(0,m):
-            if determined_Y_binary[ii] == Y[ii]:
-                correct+=1
-        return correct
-
-    def gradient_descent(self, X, Y, alpha, number_of_iterations):
-        no_rows, no_cols = np.shape(X)
-        self.theta = np.ones(no_cols)
-        for iter in range(0,number_of_iterations):
-            cost = (-1.0/no_rows)*sum([Y[ii]*math.log(self.hypothesis(X[ii]))+(1-Y[ii])*math.log(1-self.hypothesis(X[ii])) for ii in range(no_rows)])
-            grad = (-1.0/no_rows)*sum([X[ii]*(Y[ii]-self.hypothesis(X[ii])) for ii in range(no_rows)])
-            self.theta = self.theta - alpha * grad
-            correct = self.determine_correct_guesses(X, Y, no_rows)
-            print "iteration %s : cost %s : correct_guesses %s / %s" % (iter, cost, correct, len(Y))
+    def cost_function(self):
+        """
+        We will use the binary cross entropy as the cost function. https://en.wikipedia.org/wiki/Cross_entropy
+        """
+        predicted_Y_values = self.hypothesis(self.X)
+        cost = (-1.0/self.no_examples) * np.sum(self.Y * np.log(predicted_Y_values) + (1 - self.Y) * (np.log(1-predicted_Y_values)))
+        return cost
         
-class LogisticRegression(RegressionBaseClass):
-    def train(self, X, Y, alpha = 0.0007, number_of_iterations = 1000):
-        self.gradient_descent(X, Y, alpha, number_of_iterations)
-
-    # def classify_single_elem(self, X_elem):
-        # dp = np.dot(self.theta, X_elem)
-        # return self.to_binary(dp)
-    
+    def gradient(self):
+        predicted_Y_values = self.hypothesis(self.X)
+        grad = (-1.0/self.no_examples) * np.dot((self.Y-predicted_Y_values), self.X)
+        return grad
+        
+    def gradient_descent(self):
+        for iter in range(1,self.max_iter):
+            cost = self.cost_function()
+            delta = self.gradient()
+            self.theta = self.theta - self.learning_rate * delta
+            print("iteration %s : cost %s " % (iter, cost))
+        
+    def train(self, X, Y):
+        self.X = self.add_bias_col(X)
+        self.Y = Y
+        self.no_examples, self.no_features = np.shape(X)
+        self.theta = np.ones(self.no_features + 1)
+        self.gradient_descent()
+  
     def classify(self, X):
-        #self.determined_Y_values = []
-        no_rows, no_cols = np.shape(X)
-        determined_Y = [np.dot(self.theta, X[ii,:]) for ii in range(no_rows)]
-        determined_Y_binary = [self.to_binary(elem) for elem in determined_Y]
-        # print no_rows, no_cols
-        # for ii in range(0,no_rows):
-            # X_elem = X[ii,:]
-            # print len(X_elem)
-            # prediction = self.classify_single_elem(X_elem)
-            # print prediction
-            # self.determined_Y_values.append(prediction)
-        return determined_Y_binary
+        X = self.add_bias_col(X)
+        predicted_Y = self.hypothesis(X)
+        predicted_Y_binary = np.round(predicted_Y)
+        return predicted_Y_binary
 
-X_train, Y_train, X_test, Y_test = ld.myopia()
+to_bin_y = { 1: { 'Iris-setosa': 1, 'Iris-versicolor': 0, 'Iris-virginica': 0 },
+             2: { 'Iris-setosa': 0, 'Iris-versicolor': 1, 'Iris-virginica': 0 },
+             3: { 'Iris-setosa': 0, 'Iris-versicolor': 0, 'Iris-virginica': 1 }
+             }
+
+X_train, y_train, X_test, y_test = ld.iris()
+
+Y_train = np.array([to_bin_y[3][x] for x in y_train])
+Y_test = np.array([to_bin_y[3][x] for x in y_test])
+
 print("training Logistic Regression Classifier")
 lr = LogisticRegression()
-lr.train(X_train, Y_train, 0.6, 1000)
+lr.train(X_train, Y_train)
 print("trained")
-predicted_Y = lr.classify(X_train)
-f1 = f1_score(predicted_Y, Y_train, 1)
+predicted_Y_test = lr.classify(X_test)
+f1 = f1_score(predicted_Y_test, Y_test, 1)
 print("F1-score on the test-set for class %s is: %s" % (1, f1))
+
+# from sklearn.linear_model import LogisticRegression
+# logistic = LogisticRegression()
+# logistic.fit(X_train,Y_train)
+# predicted_Y_test = logistic.predict(X_test)
+# f1 = f1_score(predicted_Y_test, Y_test, 1)
+# print("F1-score on the test-set for class %s is: %s" % (1, f1))

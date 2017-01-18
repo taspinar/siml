@@ -1,3 +1,4 @@
+from collections import Counter
 
 def true_positives(determined_Y, real_Y, label):
   true_positives = 0
@@ -7,7 +8,7 @@ def true_positives(determined_Y, real_Y, label):
   return true_positives
 
 def all_positives(determined_Y, label):
-  return determined_Y.count(label)
+  return Counter(determined_Y)[label]
 
 def false_negatives(determined_Y, real_Y, label):
   false_negatives = 0

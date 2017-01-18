@@ -84,7 +84,7 @@ def adult():
     return X_train, Y_train, X_test, Y_test
 
 def myopia():
-    datafile = '../datasets/myopia.dat'
+    datafile = '../datasets/myopia/myopia.dat'
     with open(datafile, 'r') as f:
         lines = f.readlines()
         random.shuffle(lines)
@@ -108,4 +108,14 @@ def myopia():
         X_test = X_norm[no_training_examples:no_lines,:]
         Y_test = Y[no_training_examples:no_lines]
     return X_train, Y_train, X_test, Y_test
-        
+
+def iris():
+    datafile = '../datasets/iris/iris.data'
+    df = pd.read_csv(datafile, header=None)
+    df_train = df.sample(frac=0.7)
+    df_test = df.loc[~df.index.isin(df_train.index)]
+    X_train = df_train.values[:,0:4].astype(float)
+    Y_train = df_train.values[:,4]
+    X_test = df_test.values[:,0:4].astype(float)
+    Y_test = df_test.values[:,4]
+    return X_train, Y_train, X_test, Y_test

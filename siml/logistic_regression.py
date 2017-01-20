@@ -1,4 +1,3 @@
-import math
 import numpy as np
 import load_data as ld
 from evaluators import *
@@ -7,8 +6,7 @@ class LogisticRegression():
     """
     Class for performing logistic regression.
     """
-    def __init__(self, min_error = 0.0001, learning_rate = 0.7, max_iter = 1000, C = 0.01):
-        self.min_error = min_error
+    def __init__(self, learning_rate = 0.7, max_iter = 1000):
         self.learning_rate = learning_rate
         self.max_iter = max_iter
         self.theta = []

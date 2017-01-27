@@ -1,4 +1,3 @@
-import random
 import numpy as np
 import load_data as ld
 from evaluators import *

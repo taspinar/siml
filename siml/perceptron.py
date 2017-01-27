@@ -1,7 +1,17 @@
 import numpy as np
 import load_data as ld
 from evaluators import *
-   
+import random
+
+def generate_data(no_points):
+    X = np.zeros(shape=(no_points, 2))
+    Y = np.zeros(shape=no_points)
+    for ii in range(no_points):
+        X[ii][0] = random.randint(1,9)+0.5
+        X[ii][1] = random.randint(1,9)+0.5
+        Y[ii] = 1 if X[ii][0]+X[ii][1] >= 13 else -1
+    return X, Y
+
 class Perceptron():
     """
     Class for performing Perceptron.
@@ -50,21 +60,34 @@ class Perceptron():
             y_elem = self.classify_element(X[ii])
             predicted_Y.append(y_elem)
         return predicted_Y
-  
-to_bin_y = { 1: { 'Iris-setosa': 1, 'Iris-versicolor': -1, 'Iris-virginica': -1 },
-             2: { 'Iris-setosa': -1, 'Iris-versicolor': 1, 'Iris-virginica': -1 },
-             3: { 'Iris-setosa': -1, 'Iris-versicolor': -1, 'Iris-virginica': 1 }
-             }
 
-X_train, y_train, X_test, y_test = ld.iris()
 
-Y_train = np.array([to_bin_y[1][x] for x in y_train])
-Y_test = np.array([to_bin_y[1][x] for x in y_test])
-
+X, Y = generate_data(100)
 p = Perceptron()
-print("Training Perceptron Classifier")
-p.train(X_train, Y_train)
-
+p.train(X, Y)
+X_test, Y_test = generate_data(50)
 predicted_Y_test = p.classify(X_test)
 f1 = f1_score(predicted_Y_test, Y_test, 1)
 print("F1-score on the test-set for class %s is: %s" % (1, f1))
+
+
+
+#####
+        
+# to_bin_y = { 1: { 'Iris-setosa': 1, 'Iris-versicolor': -1, 'Iris-virginica': -1 },
+             # 2: { 'Iris-setosa': -1, 'Iris-versicolor': 1, 'Iris-virginica': -1 },
+             # 3: { 'Iris-setosa': -1, 'Iris-versicolor': -1, 'Iris-virginica': 1 }
+             # }
+
+# X_train, y_train, X_test, y_test = ld.iris()
+
+# Y_train = np.array([to_bin_y[1][x] for x in y_train])
+# Y_test = np.array([to_bin_y[1][x] for x in y_test])
+
+# p = Perceptron()
+# print("Training Perceptron Classifier")
+# p.train(X_train, Y_train)
+
+# predicted_Y_test = p.classify(X_test)
+# f1 = f1_score(predicted_Y_test, Y_test, 1)
+# print("F1-score on the test-set for class %s is: %s" % (1, f1))

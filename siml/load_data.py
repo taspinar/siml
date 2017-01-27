@@ -2,6 +2,7 @@ import pandas as pd
 import os
 import numpy as np
 import random
+from io import open
 
 ###
 def strip_quotations_newline(text):
@@ -53,7 +54,7 @@ def amazon_reviews():
     files = os.listdir(datafolder)
     Y_train, Y_test, X_train, X_test,  = [], [], [], []
     for file in files:
-        f = open(datafolder + file, 'rb')
+        f = open(datafolder + file, 'r', encoding="utf8")
         label = file
         lines = f.readlines()
         no_lines = len(lines)

@@ -13,6 +13,9 @@ I have also provided some notebooks, explaining the mathematics of some Machine 
 + [Naive Bayes Classification](https://github.com/taspinar/siml/blob/master/notebooks/Naive_Bayes.ipynb)
 + [Perceptron Classification](https://github.com/taspinar/siml/blob/master/notebooks/Perceptron.ipynb)
 
+# Also see:
++ [Classification with Scikit-Learn](https://github.com/taspinar/siml/blob/master/notebooks/scikit_classification.ipynb)
+
 # Installation
 To install **siML**:
 ```python

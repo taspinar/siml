@@ -8,30 +8,29 @@ from IPython.display import display
 
 from sklearn.preprocessing import LabelEncoder
 
-from sklearn.linear_model import LogisticRegression
-from sklearn.svm import SVC
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn import tree
-from sklearn.neural_network import MLPClassifier
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import GradientBoostingClassifier
-from sklearn.gaussian_process.kernels import RBF
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.svm import SVC
+from sklearn.neural_network import MLPClassifier
 from sklearn.naive_bayes import GaussianNB
+from sklearn.ensemble import AdaBoostClassifier
+from sklearn.gaussian_process import GaussianProcessClassifier
 
 ###
 
 dict_classifiers = {
     "Gradient Boosting Classifier": GradientBoostingClassifier(),
-    "Random Forest": RandomForestClassifier(n_estimators = 18),
+    "Random Forest": RandomForestClassifier(),
     "Logistic Regression": LogisticRegression(),
     "Nearest Neighbors": KNeighborsClassifier(),
+    "Decision Tree": DecisionTreeClassifier(),
     "Linear SVM": SVC(),
     "Neural Net": MLPClassifier(alpha = 1),
     "Naive Bayes": GaussianNB(),   
-    "Decision Tree": tree.DecisionTreeClassifier(),
     "AdaBoost": AdaBoostClassifier(),
-    "QDA": QuadraticDiscriminantAnalysis(),
     "Gaussian Process": GaussianProcessClassifier()
 }
    

@@ -15,6 +15,11 @@ I have also provided some notebooks, explaining the mathematics of some Machine 
 
 + [Classification with Scikit-Learn](https://github.com/taspinar/siml/blob/master/notebooks/scikit_classification.ipynb)
 + [Machine Learning with Signal Analysis techniques](https://github.com/taspinar/siml/blob/master/notebooks/Machine%20Learning%20with%20Signal%20Processing%20techniques.ipynb)
++ [Introduction to PyWavelets (for Wavelet Analysis](https://github.com/taspinar/siml/blob/master/notebooks/WV1%20-%20Using%20PyWavelets%20for%20Wavelet%20Analysis.ipynb)
++ [Using Wavelets to Visualize the Scaleogram, time-axis and Fourier Transform](https://github.com/taspinar/siml/blob/master/notebooks/WV2%20-%20Visualizing%20the%20Scaleogram%2C%20time-axis%20and%20Fourier%20Transform.ipynb)
++ [Classification of signals using the Continuous Wavelet Transform and Convolutional Neural Networks](https://github.com/taspinar/siml/blob/master/notebooks/WV3%20-%20Classification%20of%20signals%20using%20the%20CWT%20and%20CNN.ipynb)
++ [Classification of ECG signals using the Discrete Wavelet Transform and Gradient Boosting](https://github.com/taspinar/siml/blob/master/notebooks/WV4%20-%20Classification%20of%20ECG%20signals%20using%20the%20Discrete%20Wavelet%20Transform.ipynb)
++ [Classification of signals using the Discrete Wavelet Transform and several classifiers](https://github.com/taspinar/siml/blob/master/notebooks/WV5%20-%20Classification%20of%20the%20UCI-HAR%20dataset%20using%20Discrete%20Wavelet%20Transform..ipynb)
 
 # Installation
 To install **siML**:

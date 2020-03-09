@@ -12,8 +12,8 @@ class NaiveBaseClass:
         return ro_dict
 
     def get_max_value_key(self, d1):
-        values = d1.values()
-        keys = d1.keys()
+        values = list(d1.values())
+        keys = list(d1.keys())
         max_value_index = values.index(max(values))
         max_key = keys[max_value_index]
         return max_key

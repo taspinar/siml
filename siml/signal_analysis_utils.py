@@ -4,7 +4,7 @@ from scipy.signal import welch
 from scipy.fftpack import fft
 from scipy import signal
 
-from detect_peaks import detect_peaks
+from siml.detect_peaks import detect_peaks
 
 def get_values(y_values, T, N, f_s):
     y_values = y_values

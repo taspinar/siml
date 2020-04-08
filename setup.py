@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
 		name='siml',
-		version='0.3.1',
+		version='0.3.2',
 		description='Machine Learning algorithms implemented from scratch',
 		url='https://github.com/taspinar/siml',
 		author='Ahmet Taspinar',

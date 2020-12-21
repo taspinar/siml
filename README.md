@@ -15,6 +15,7 @@ I have also provided some notebooks, explaining the mathematics of some Machine 
 
 + [Classification with Scikit-Learn](https://github.com/taspinar/siml/blob/master/notebooks/scikit_classification.ipynb)
 + [Machine Learning with Signal Analysis techniques](https://github.com/taspinar/siml/blob/master/notebooks/Machine%20Learning%20with%20Signal%20Processing%20techniques.ipynb)
++ [Time-series forecasting with signal analysis techniques](https://github.com/taspinar/siml/blob/master/notebooks/Time%20Series%20forecasting%20with%20Stochastic%20Signal%20Analysis.ipynb)
 
 # Notebooks explaining Machine Learning with the Wavelet Transform
 + [Introduction to PyWavelets (for Wavelet Analysis](https://github.com/taspinar/siml/blob/master/notebooks/WV1%20-%20Using%20PyWavelets%20for%20Wavelet%20Analysis.ipynb)

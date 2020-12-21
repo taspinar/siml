@@ -3,6 +3,11 @@
 ## 0.x.x
 
 TBD
+## 0.4.0 ( 2020-12-21 )
+### Added
+- notebook with code for time-series forecasting
+- Python code to be used in this notebook.
+
 ## 0.3.2 ( 2020-04-08 )
 ### Bugfix: fix wrong import reference to detect_peaks
 
